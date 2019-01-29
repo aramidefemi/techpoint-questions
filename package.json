@@ -6,9 +6,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node app.js"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "jest": "21.2.1"
   },
   "devDependencies": {
