@@ -1,6 +1,14 @@
 # MAX at Techpoint
 
-This repo contains questions you should be able to solve in a reasonable amount of time.
+This repo contains solutions to questions I was be able to solve in a reasonable amount of time.
+
+requirements to test...
+
+-- npm install
+-- npm start
+-- /morse  -- morse code converter
+-- /classifier -- classifier code converter
+
 
 ## Questions
 

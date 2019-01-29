@@ -64,7 +64,14 @@ Object.freeze(MORSE_CODE);
  * @param {string} morseCode The string to decode.
  */
 function decodeMorse(morseCode) {
-  // Your code should go here.
+ 
+  var response;
+  var code = morseCode.split(" "); // remove white spaces
+  var response = code.map((res)=>MORSE_CODE[res]);
+  var decoder = response.join("");
+
+ return decoder;
 }
 
-module.exports = decodeMorse;
+
+module.exports = decodeMorse('--.. --..');
