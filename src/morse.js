@@ -102,7 +102,7 @@ function decodeMorse(morseCode) {
   }
 
   var decoder = format.join("");
-  console.log(decoder)
+
   return decoder;
 }
 
