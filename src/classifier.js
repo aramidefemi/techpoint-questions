@@ -1,9 +1,12 @@
-const input = require("./inputs/input");
+const input = require("./inputs/edge-input");
 /**
  * This is the entry point to the program
  *
  * @param {array} input Array of student objects
  */
+
+function classifier (input) {
+
 var output = {};
 var groupCounter = 0;
 
@@ -13,6 +16,7 @@ function reorderInput(input) {
   var reorder = input.map((input, index) => {
     return {
       name: input.name,
+      dob: input.dob,
       age: (() => {
         var dob = new Date(input.dob).getFullYear();
         var presentYear = new Date().getFullYear();
@@ -23,10 +27,11 @@ function reorderInput(input) {
   });
 
   reorder.sort((a, b) => parseFloat(a.age) - parseFloat(b.age)); //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-  classifier(reorder);
+  recursive(reorder);
 }
 
-function classifier(input) {
+
+function recursive(input) {
   var inputLength = input.length;
   var newinput = {};
   newinput.members = [];
@@ -89,9 +94,11 @@ function classifier(input) {
 
   var stock = newinput.members;
   newinput.members = stock.map(res => {
-    return { name: res.name, age: res.age };
+    return { name: res.name, age: res.age, dob: res.dob, regNo: res.regNo };
   });
-  newinput.regNos = stock.map(res => res.regNo);
+
+  newinput.regNos = stock.map(res => parseInt(res.regNo));
+  newinput.regNos = newinput.regNos.sort((a, b) => parseInt(a) - parseInt(b));
 
   oldest = newinput.members[newinput.members.length - 1].age;
   newinput["oldest"] = oldest;
@@ -104,9 +111,10 @@ function classifier(input) {
   groupCounter = groupCounter + 1;
   output[`group${groupCounter}`] = newinput;
 
-  classifier(input);
+  recursive(input);
 }
 
 output["noOfGroups"] = groupCounter;
-
-module.exports = output;
+return output;
+}
+module.exports = classifier;
